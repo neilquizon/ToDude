@@ -17,8 +17,10 @@ class ItemListViewController: UITableViewController {
     // the quick brown fox jumped over the head of the lazy dog
     
     var items = [Item]()
+    var category: Category?
 
     @IBAction func addItemButtonTapped(_ sender: UIBarButtonItem) {
+        
         var tempTextField = UITextField()
         let alertController = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Done", style: .default) { (action) in
