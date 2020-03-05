@@ -11,8 +11,47 @@ import CoreData
 
 class ItemListViewController: UITableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    // the quick brown fox jumped over the head of the lazy dog
+    
     var items = [Item]()
 
+    @IBAction func addItemButtonTapped(_ sender: UIBarButtonItem) {
+        var tempTextField = UITextField()
+        let alertController = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Done", style: .default) { (action) in
+            let newItem = Item(context: self.context)
+            if let text = tempTextField.text {
+              newItem.title = text
+              newItem.completed = false
+              self.items.append(newItem)
+              self.saveItems()
+            }
+        }
+    
+              
+              alertController.addTextField { (textField) in
+                textField.placeholder = "Title"
+                tempTextField = textField
+              }
+              
+              // Add the action we created above to our alert controller
+              alertController.addAction(alertAction)
+              // show our alert on screen
+              present(alertController, animated: true, completion: nil)
+        // the quick brown fox jumped over the head of the lazy dog
+        
+            }
+
+            func saveItems() {
+              do {
+                try context.save()
+              } catch {
+                print("Error saving context \(error)")
+              }
+              tableView.reloadData()
+            }
+    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
