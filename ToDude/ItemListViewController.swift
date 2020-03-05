@@ -34,11 +34,9 @@ class ItemListViewController: UITableViewController {
                 tempTextField = textField
               }
               
-              // Add the action we created above to our alert controller
               alertController.addAction(alertAction)
               // show our alert on screen
               present(alertController, animated: true, completion: nil)
-        // the quick brown fox jumped over the head of the lazy dog
         
             }
 
